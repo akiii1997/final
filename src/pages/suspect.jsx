@@ -16,7 +16,7 @@ export default function Entryform() {
 
     const menu = [
         {
-            name: "Insert entry" , img:<Insert id="menu_icon"/>
+            name: "Insert suspect" , img:<Insert id="menu_icon"/>
         },
         {
             name: "Update entry",img:<Update id="menu_icon"/>
