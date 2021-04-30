@@ -19,10 +19,10 @@ export default function Entryform() {
             name: "Insert suspect" , img:<Insert id="menu_icon"/>
         },
         {
-            name: "Update entry",img:<Update id="menu_icon"/>
+            name: "Update suspect",img:<Update id="menu_icon"/>
         },
         {
-            name: "Delete entry",img:<Delete id="menu_icon"/>
+            name: "Delete suspect",img:<Delete id="menu_icon"/>
         }
     ]
 
