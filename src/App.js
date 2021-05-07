@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div className="App">
-    <Navigation show={show} ></Navigation>
+    <Navigation show={true} ></Navigation>
       <Router>
         <Switch>
           <Route exact path="/"  component={ () => <Login visible={setVisible} /> }></Route>

@@ -1,6 +1,7 @@
 import React from 'react'
 import '../pages/css/entryform.css'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+
 import { ReactComponent as Insert } from '../assets/imgs/insert.svg'
 import { ReactComponent as Update } from '../assets/imgs/update.svg'
 import { ReactComponent as Delete } from '../assets/imgs/delete.svg'
@@ -10,6 +11,11 @@ import { ReactComponent as Delete } from '../assets/imgs/delete.svg'
 export default function Entryform() {
 
     const [active, activeSet] = useState(0);
+    const [formData, setFormData] = useState({
+        "name": ''
+    });
+
+
 
     const setActive = (i) => {
         activeSet(i)
@@ -43,72 +49,12 @@ export default function Entryform() {
         }
     ]
 
-    const InsertForm = () => {
-        return (
-            <>
+    // hold until api
 
-                <form>
-                    <input type="text" name="" id="" placeholder="Name" />
-                    <input type="date" name="" id="date" />
-                    <textarea name="" id="address" placeholder="Address" />
-                    <input type="button" value="Insert" id="submit" />
-                </form>
-
-            </>
-        )
+    const InsertData = () => {
+        console.log(formData)
     }
-
-    const UpdateForm = () => {
-        return (
-            <>
-
-                <form>
-                    <div id="search_base">
-                        <input type="text" name="" id="search" placeholder="Search .." />
-                    </div>
-                    <input type="text" name="" id="" placeholder="Name" />
-                    <input type="date" name="" id="date" />
-                    <textarea name="" id="address" placeholder="Address" />
-                    <input type="button" value="Insert" id="submit" />
-                </form>
-
-            </>
-        )
-    }
-
-    const DeleteList = () => {
-        return (
-            <>
-            <div id="deleteBase">
-
-                <div  id="delete_search">
-                    <input type="text" name="" id="" placeholder=" &#128269; Search entry ..."/>
-                </div>
-
-                {data.map((item, i) => {
-                    return (
-                        
-                        <div id="deleteItem" key={i}>
-                            <div id="delete_name">
-                            {item.name} 
-                            </div>
-                            <div id="delete_address">
-                            {item.Address}
-                            </div>
-                          <div id="delete_des">
-                          {item.details} 
-                          </div>
-                          <div id="delete_button">
-                              <Delete id="delete_ico"/>
-                          </div>
-                            </div>
-                    );
-                    
-                })}
-                </div>
-            </>
-        )
-    }
+    //
 
 
     const NaviUpdate = (i) => {
@@ -138,13 +84,87 @@ export default function Entryform() {
             <div id="forms">
                 <div id="form_items">
                     {
-                        active === 0 && <InsertForm />
+                        active === 0 && <>
+                            <form>
+                                <input type="text" name="ename" id="" placeholder="Name"
+
+                                    onChange={(e) =>
+                                        setFormData({ ...formData, name: e.target.value })
+                                    }
+
+                                />
+                                <input type="date" name="edate" id="date"
+
+                                    onChange={(e) =>
+                                        setFormData({ ...formData, date: e.target.value })
+                                    }
+                                />
+                                <textarea name="eaddress" id="address" placeholder="Address"
+
+                                    onChange={(e) =>
+                                        setFormData({ ...formData, address: e.target.value })
+                                    }
+                                />
+                                <textarea name="edes" id="address" placeholder="Details"
+
+onChange={(e) =>
+    setFormData({ ...formData, description: e.target.value })
+}
+/>
+                                <input type="button" value="Insert" id="submit" onClick={InsertData} />
+                            </form>
+                        </>
                     }
                     {
-                        active === 1 && <UpdateForm />
+                        active === 1 &&
+                        <>
+
+                            <form>
+                                <div id="search_base">
+                                    <input type="text" name="" id="search" placeholder="Search .." />
+                                </div>
+                                <input type="text" name="" id="" placeholder="Name" />
+                                <input type="date" name="" id="date" />
+                                <textarea name="" id="address" placeholder="Address" />
+                                <input type="button" value="Insert" id="submit" />
+                            </form>
+
+                        </>
                     }
                     {
-                        active === 2 && <DeleteList />
+                        active === 2 &&
+                        <>
+                            <>
+                                <div id="deleteBase">
+
+                                    <div id="delete_search">
+                                        <input type="text" name="" id="" placeholder=" &#128269; Search entry ..." />
+                                    </div>
+
+                                    {data.map((item, i) => {
+                                        return (
+
+                                            <div id="deleteItem" key={i}>
+                                                <div id="delete_name">
+                                                    {item.name}
+                                                </div>
+                                                <div id="delete_address">
+                                                    {item.Address}
+                                                </div>
+                                                <div id="delete_des">
+                                                    {item.details}
+                                                </div>
+                                                <div id="delete_button">
+                                                    <Delete id="delete_ico" />
+                                                </div>
+                                            </div>
+                                        );
+
+                                    })}
+                                </div>
+                            </>
+
+                        </>
                     }
                 </div>
             </div>
